@@ -107,6 +107,14 @@ def match_nul(grille):
         print("C'est un match nul !")
         jeu_en_cours = False
 
+def verifier_Victoire():
+    """Fonction qui détermine si un joueur a gagné la partie
+    """
+    global jeu_en_cours
+    if gagner_diagonale(grille) or gagner_horizontal(grille) or gagner_vertical(grille):
+       print(f"Le gagnant est {gagnant}")
+       jeu_en_cours = False
+
 
 # Changement de joueur
 def changement_joueur():
@@ -126,7 +134,11 @@ def changement_joueur():
 # verifier gagnant ou nul à nouveau
 
 
-# while jeu_en_cours:
-#     afficher_grille(grille)
-#     coup_joueur(grille)
+while jeu_en_cours:
+    afficher_grille(grille)
+    coup_joueur(grille)
+    verifier_Victoire()
+    match_nul(grille)
+    changement_joueur()
+    
     
