@@ -93,7 +93,19 @@ def gagner_diagonale(grille):
     elif grille[2] == grille[4] == grille[6] and grille[4] != "-":
         gagnant = grille[2]
         return True
-    
+
+
+def match_nul(grille):
+    """Fonction qui détermine si le match est nul
+
+    Args:
+        L'argument est la variable ou la liste que l'on a créée pour creer une grille de jeu.
+    """
+    global jeu_en_cours
+    if "-" not in grille:
+        afficher_grille(grille)
+        print("C'est un match nul !")
+        jeu_en_cours = False
 # Changement de joueur
 
 # verifier gagnant ou nul à nouveau
