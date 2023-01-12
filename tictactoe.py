@@ -75,6 +75,25 @@ def gagner_vertical(grille):
     elif grille[2] == grille[5] == grille[8] and grille[5] != "-":
         gagnant = grille[2]
         return True
+
+
+def gagner_diagonale(grille):
+    """Fonction qui détermine si le joueur gagne avec 3 coups en diagonale
+
+    Args:
+        L'argument est la variable ou la liste que l'on a créée pour creer une grille de jeu.
+
+    Returns:
+        La fonction retourne le booléen True pour chacune des 2 diagonales, si le joueur a réussi à remplir toutes les cases d'une ligne en diagonale.
+    """
+    global gagnant
+    if grille[0] == grille[4] == grille[8] and grille[0] != "-":
+        gagnant = grille[0]
+        return True
+    elif grille[2] == grille[4] == grille[6] and grille[4] != "-":
+        gagnant = grille[2]
+        return True
+    
 # Changement de joueur
 
 # verifier gagnant ou nul à nouveau
