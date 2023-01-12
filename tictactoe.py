@@ -42,7 +42,7 @@ def gagner_horizontal(grille):
         L'argument est la variable ou la liste que l'on a créée pour creer une grille de jeu.
 
     Returns:
-        La fonction retourne le booléen True pour chacune des 3 lignes horizontal, si le joueur a réussi à remplir une ligne horizontal
+        La fonction retourne le booléen True pour chacune des 3 lignes horizontal, si le joueur a réussi à remplir toutes les cases d'une ligne horizontal.
     """
     global gagnant
     if grille[0] == grille[1] == grille[2] and grille[1] != "-":
@@ -54,10 +54,27 @@ def gagner_horizontal(grille):
     elif grille[6] == grille[7] == grille[8] and grille[7] != "-":
         gagnant = grille[6]
         return True
-    
 
-    
 
+def gagner_vertical(grille):
+    """Fonction qui détermine si le joueur gagne avec 3 coups Vertical
+
+    Args:
+        L'argument est la variable ou la liste que l'on a créée pour creer une grille de jeu.
+
+    Returns:
+        La fonction retourne le booléen True pour chacune des 3 lignes vertical, si le joueur a réussi à remplir toutes les cases d'une ligne vertical.
+    """
+    global gagnant
+    if grille[0] == grille[3] == grille[6] and grille[3] != "-":
+        gagnant = grille[0]
+        return True
+    elif grille[1] == grille[4] == grille[7] and grille[4] != "-":
+        gagnant = grille[1]
+        return True
+    elif grille[2] == grille[5] == grille[8] and grille[5] != "-":
+        gagnant = grille[2]
+        return True
 # Changement de joueur
 
 # verifier gagnant ou nul à nouveau
