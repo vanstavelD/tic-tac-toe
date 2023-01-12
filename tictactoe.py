@@ -106,7 +106,22 @@ def match_nul(grille):
         afficher_grille(grille)
         print("C'est un match nul !")
         jeu_en_cours = False
+
+
 # Changement de joueur
+def changement_joueur():
+    """Fonction qui permet de changer de joueur:
+    on utilise l'instruction 'global' pour informer que la variable 
+    qui est utilisée à l'intérieur de la fonction est la même que
+    celle qui est definie à l'extérieur de la fonction.
+    ensuite on utilise cette variable avec une boucle if.
+     
+    """
+    global joueur_un
+    if joueur_un == "X":
+        joueur_un = "O"
+    else:
+        joueur_un = "X"
 
 # verifier gagnant ou nul à nouveau
 
