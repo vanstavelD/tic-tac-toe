@@ -34,8 +34,29 @@ def coup_joueur(grille):
         print("Oops cette case est déjà prise")
         
     
-# verifier gagnant ou nul
+# verifier gagnant ou nul, la fonction global informe que la variable a qui est utilisée à l'intérieur de la fonction est la même que celle qui est définie à l'extérieur de la fonction (dans l'environnement global)
 def gagner_horizontal(grille):
+    """ Fonction qui détermine si le joueur gagne avec 3 coups horizontal
+
+    Args:
+        L'argument est la variable ou la liste que l'on a créée pour creer une grille de jeu.
+
+    Returns:
+        La fonction retourne le booléen True pour chacune des 3 lignes horizontal, si le joueur a réussi à remplir une ligne horizontal
+    """
+    global gagnant
+    if grille[0] == grille[1] == grille[2] and grille[1] != "-":
+        gagnant = grille[0]
+        return True
+    elif grille[3] == grille[4] == grille[5] and grille[4] != "-":
+        gagnant = grille[3]
+        return True
+    elif grille[6] == grille[7] == grille[8] and grille[7] != "-":
+        gagnant = grille[6]
+        return True
+    
+
+    
 
 # Changement de joueur
 
