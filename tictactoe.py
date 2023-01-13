@@ -2,9 +2,9 @@
 grille = ["-", "-", "-",
           "-", "-", "-",
           "-", "-", "-"]
-joueur_un = "X"
+joueur_en_cours = "X"
 gagnant = None
-jeu_en_cours = True
+partie_en_cours = True
 
 # faire la grille
 def afficher_grille(grille):
@@ -19,23 +19,31 @@ def afficher_grille(grille):
     print("----------")
     print(grille[6] + " | " + grille[7] + " | " + grille[8])
     
-# le coup d'un joueur
-def coup_joueur(grille):
+# le tour d'un joueur
+def tour_joueur(grille, joueur_en_cours):
     """ Le coup d'un joueur
 
     Args:
         l'argument pour cette fonction est la variable que vous avez créée pour créer une grille de jeu. 
         
     """
-    coup = int(input("Entrez un numéro de 1 à 9 : "))
-    if coup >= 1 and coup <= 9 and grille[coup-1] == "-":
-        grille[coup-1] = joueur_un
-    else:
-        print("Oops cette case est déjà prise")
+    tour = int(input("Entrez un numéro de 1 à 9 : "))
+    tour_fini = False
+    while not tour_fini:
         
-    
+        if tour >= 1 and tour <= 9 and grille[tour-1] == "-":
+            grille[tour-1] = joueur_en_cours
+            tour_fini = True
+        else:
+            tour = int(input("erreur, entrez à nouveau un numéro de 1 à 9 : "))
+
+            
+            
+
+        
+
 # verifier gagnant ou nul, la fonction global informe que la variable a qui est utilisée à l'intérieur de la fonction est la même que celle qui est définie à l'extérieur de la fonction (dans l'environnement global)
-def gagner_horizontal(grille):
+def gagner_horizontal(grille, gagnant):
     """ Fonction qui détermine si le joueur gagne avec 3 coups horizontal
 
     Args:
@@ -44,7 +52,7 @@ def gagner_horizontal(grille):
     Returns:
         La fonction retourne le booléen True pour chacune des 3 lignes horizontal, si le joueur a réussi à remplir toutes les cases d'une ligne horizontal.
     """
-    global gagnant
+    
     if grille[0] == grille[1] == grille[2] and grille[1] != "-":
         gagnant = grille[0]
         return True
@@ -56,7 +64,7 @@ def gagner_horizontal(grille):
         return True
 
 
-def gagner_vertical(grille):
+def gagner_vertical(grille, gagnant):
     """Fonction qui détermine si le joueur gagne avec 3 coups Vertical
 
     Args:
@@ -65,7 +73,7 @@ def gagner_vertical(grille):
     Returns:
         La fonction retourne le booléen True pour chacune des 3 lignes vertical, si le joueur a réussi à remplir toutes les cases d'une ligne vertical.
     """
-    global gagnant
+    
     if grille[0] == grille[3] == grille[6] and grille[3] != "-":
         gagnant = grille[0]
         return True
@@ -77,7 +85,7 @@ def gagner_vertical(grille):
         return True
 
 
-def gagner_diagonale(grille):
+def gagner_diagonale(grille, gagnant):
     """Fonction qui détermine si le joueur gagne avec 3 coups en diagonale
 
     Args:
@@ -86,7 +94,7 @@ def gagner_diagonale(grille):
     Returns:
         La fonction retourne le booléen True pour chacune des 2 diagonales, si le joueur a réussi à remplir toutes les cases d'une ligne en diagonale.
     """
-    global gagnant
+    
     if grille[0] == grille[4] == grille[8] and grille[0] != "-":
         gagnant = grille[0]
         return True
@@ -95,29 +103,29 @@ def gagner_diagonale(grille):
         return True
 
 
-def match_nul(grille):
+def match_nul(grille, partie_en_cours):
     """Fonction qui détermine si le match est nul
 
     Args:
         L'argument est la variable ou la liste que l'on a créée pour creer une grille de jeu.
     """
-    global jeu_en_cours
+    
     if "-" not in grille:
         afficher_grille(grille)
         print("C'est un match nul !")
-        jeu_en_cours = False
+        partie_en_cours = False
 
-def verifier_Victoire():
+def verifier_victoire(gagnant, partie_en_cours):
     """Fonction qui détermine si un joueur a gagné la partie
     """
-    global jeu_en_cours
-    if gagner_diagonale(grille) or gagner_horizontal(grille) or gagner_vertical(grille):
+    
+    if gagner_diagonale(grille, gagnant) or gagner_horizontal(grille,gagnant) or gagner_vertical(grille,gagnant):
        print(f"Le gagnant est {gagnant}")
-       jeu_en_cours = False
+       partie_en_cours = False
 
 
 # Changement de joueur
-def changement_joueur():
+def changement_joueur(joueur_en_cours):
     """Fonction qui permet de changer de joueur:
     on utilise l'instruction 'global' pour informer que la variable 
     qui est utilisée à l'intérieur de la fonction est la même que
@@ -125,20 +133,20 @@ def changement_joueur():
     ensuite on utilise cette variable avec une boucle if.
      
     """
-    global joueur_un
-    if joueur_un == "X":
-        joueur_un = "O"
+
+    if joueur_en_cours == "X":
+        joueur_en_cours = "O"
     else:
-        joueur_un = "X"
+        joueur_en_cours = "X"
 
 # verifier gagnant ou nul à nouveau
 
 
-while jeu_en_cours:
+while partie_en_cours:
     afficher_grille(grille)
-    coup_joueur(grille)
-    verifier_Victoire()
-    match_nul(grille)
-    changement_joueur()
+    tour_joueur(grille, joueur_en_cours)
+    verifier_victoire(gagnant, partie_en_cours)
+    match_nul(grille, partie_en_cours)
+    changement_joueur(joueur_en_cours)
     
     
