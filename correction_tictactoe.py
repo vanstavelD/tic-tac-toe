@@ -1,3 +1,5 @@
+import os
+
 plateau = {
     
     "A" : [None for _ in range(3)],
@@ -13,6 +15,7 @@ def afficher_grille(plateau:dict) -> None:
     Args:
         plateau (dict): Un plateau de jeu
     """
+    #os.
     print("\t|\t0\t|\t1\t|\t2\t|")
     print("---------------------------------------------------------")
     for cle in plateau:
@@ -93,3 +96,29 @@ def verifier_grille_pleine(plateau:dict) -> bool:
             if case == None:
                 return False
     return True
+
+termine = False
+joueur = "X"
+
+while not termine:
+    afficher_grille(plateau)
+    coup = input("entrez un coup : ")
+    while not verifier_coup(plateau, coup):
+        coup = input("entrez un coup (valide cette fois): ")
+    jouer_coup(plateau, joueur, coup)
+    
+    pleine = verifier_grille_pleine(plateau)
+    gagnante = verifier_gagnant(plateau)
+    termine = pleine or gagnante
+    
+    if gagnante:
+        print("Felicitations joueur", joueur)
+        afficher_grille(plateau)
+    elif pleine:
+        print("Egalité")
+        afficher_grille(plateau)
+    else:
+        if joueur == "X":
+            joueur = "O"
+        else:
+            joueur = "X"
