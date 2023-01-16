@@ -56,5 +56,26 @@ def verifier_coup(plateau:dict, coup:str) -> bool:
     else:
         return False
     
-    
-    
+def verifier_gagnant(plateau:dict) -> bool:
+    """Fonction qui vérifie si la grille est gagnante
+
+    Args:
+        plateau (dict): le plateau de jeu
+
+    Returns:
+        bool: True si la grille est gagnante, False sinon
+    """
+    #Vérification des lignes
+    for cle in plateau:
+        if plateau [cle[0]] == plateau[cle[1]] == plateau[cle[2]] and plateau[cle[0]]:
+            return True
+    #Verification des colonnes
+    for i in range(3):
+        if plateau ["A"][i] == plateau["B"][i] == plateau["C"][i] and plateau["A"][i]:
+            return True
+    #Verification des diagonales
+    if plateau ["A"][0] == plateau["B"][1] == plateau["C"][2] and plateau["A"][0]:
+            return True
+    if plateau ["A"][2] == plateau["B"][1] == plateau["C"][0] and plateau["A"][2]:
+            return True
+        
