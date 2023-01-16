@@ -1,3 +1,5 @@
+# Version 1.0 du projet morpion
+# Version du 16/01/2023
 import os
 
 plateau = {
