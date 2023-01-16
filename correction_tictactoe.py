@@ -79,3 +79,17 @@ def verifier_gagnant(plateau:dict) -> bool:
     if plateau ["A"][2] == plateau["B"][1] == plateau["C"][0] and plateau["A"][2]:
             return True
         
+def verifier_grille_pleine(plateau:dict) -> bool:
+    """Fonction qui permet de savoir si la grille est pleine
+
+    Args:
+        plateau (dict): un plateau de jeu
+
+    Returns:
+        bool: True si la grille est pleine, False sinon
+    """
+    for cle in plateau:
+        for case in plateau[cle]:
+            if case == None:
+                return False
+    return True
